@@ -136,7 +136,7 @@ export async function activate(context: vscode.ExtensionContext) {
         compositionState.composingText += args.text;
       } else {
         await mh.handleKeyEvent(args.text);
-      }
+      } 
     });
   });
 
