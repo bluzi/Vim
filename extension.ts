@@ -1,43 +1,4 @@
-/**
- * Extension.ts is a lightweight wrapper around ModeHandler. It converts key
- * events to their string names and passes them on to ModeHandler via
- * handleKeyEvent().
- */
 
-import * as vscode from 'vscode';
-import * as _ from 'lodash';
-import { showCmdLine } from './src/cmd_line/main';
-import { EditorIdentity } from './src/editorIdentity';
-import { ModeHandler } from './src/mode/modeHandler';
-import { taskQueue } from './src/taskQueue';
-import { Position } from './src/common/motion/position';
-import { Globals } from './src/globals';
-import { AngleBracketNotation } from './src/notation';
-import { ModeName } from './src/mode/mode';
-import { Configuration } from './src/configuration/configuration';
-import { ICodeKeybinding } from './src/mode/remapper';
-import { runCmdLine } from './src/cmd_line/main';
-
-import './src/actions/vim.all';
-import { attach } from 'promised-neovim-client';
-import { spawn } from 'child_process';
-import { Neovim } from './src/neovim/nvimUtil';
-
-interface VSCodeKeybinding {
-  key: string;
-  mac?: string;
-  linux?: string;
-  command: string;
-  when: string;
-}
-
-const packagejson: {
-  contributes: {
-    keybindings: VSCodeKeybinding[];
-  };
-} = require('../package.json'); // out/../package.json
-
-let extensionContext: vscode.ExtensionContext;
 
 /**
  * Note: We can't initialize modeHandler here, or even inside activate(), because some people
@@ -175,7 +136,7 @@ export async function activate(context: vscode.ExtensionContext) {
         compositionState.composingText += args.text;
       } else {
         await mh.handleKeyEvent(args.text);
-      }
+      } 
     });
   });
 
