@@ -4,6 +4,7 @@
  * handleKeyEvent().
 */
 
+
 /**
  * Note: We can't initialize modeHandler here, or even inside activate(), because some people
  * see a bug where VSC hasn't fully initialized yet, which pretty much breaks VSCodeVim entirely.
